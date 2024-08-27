@@ -744,8 +744,9 @@ class Analysis(Target):
         self.datas = []
         self.binaries = []
 
-        for dest_name, src_name, typecode in combined_toc:
-            logger.info(f"XXX Reclassifying {dest_name} {src_name} {typecode}")
+        len_combined_toc = len(combined_toc)
+        for n, (dest_name, src_name, typecode) in enumerate(combined_toc):
+            logger.info(f"XXX {n}/{len_combined_toc}: Reclassifying {dest_name} {src_name} {typecode}")
             # Returns 'BINARY' or 'DATA', or None if file cannot be classified.
             detected_typecode = bindepend.classify_binary_vs_data(src_name)
             logger.info(f"XXX {detected_typecode=}")
